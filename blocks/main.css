@@ -104,7 +104,7 @@
 }
 
 .main__gallery-paragraph {
-  font-family: "Inter-Black";
+  font-family: "Inter-Black", sans-serif;
   font-size: 24px;
   margin: 0;
 }
