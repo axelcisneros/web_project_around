@@ -1,6 +1,7 @@
 .main {
   max-width: 880px;
   margin: auto;
+  padding-top: 40px;
 }
 
 .main__profile {
@@ -77,6 +78,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px 17px;
+}
+
+.main__gallery:nth-last-child(3n) {
+  margin: 0;
 }
 
 .main__gallery-card {
