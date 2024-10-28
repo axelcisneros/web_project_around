@@ -4,8 +4,11 @@
 }
 
 .main__profile {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 120px repeat(3, 1fr);
+  grid-template-rows: 120px;
+  grid-gap: 30px;
+  padding-bottom: 50px;
 }
 
 .main__content-image {
@@ -19,25 +22,95 @@
 
 .main__content-paragraph {
   max-width: 450px;
+  display: grid;
+  grid-column: 2 / 4;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  align-items: center;
+  grid-row-gap: 10px;
 }
 
 .main__paragraph {
   max-width: 415px;
 }
 
+.main__paragraph_name {
+  grid-column: 1 / 4;
+  margin: 0;
+  font-size: 42px;
+  line-height: 48px;
+  font-weight: 600;
+  padding-top: 22px;
+}
+
+.main__paragraph_about {
+  grid-column: 1 / 5;
+  grid-row: 2;
+  margin: 0;
+  font-size: 18px;
+  padding-bottom: 21px;
+}
+
 .main__button {
   border: 2px inset;
   background-color: rgba(0, 0, 0, 0);
   color: #fff;
+  padding: 0;
 }
 
 .main__button_edit {
   width: 24px;
   height: 24px;
-  padding: 0;
+  align-self: end;
+  margin-bottom: 7px;
 }
 
 .main__button_add {
   width: 150px;
   height: 50px;
+  align-self: center;
+  justify-self: center;
+}
+
+.main__gallery {
+  max-width: 880px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 17px;
+}
+
+.main__gallery-card {
+  position: relative;
+  max-width: 290px;
+  background-color: #fff;
+  color: #000;
+}
+
+.main__gallery-label {
+  position: absolute;
+  right: 30px;
+  bottom: 18px;
+}
+
+.main__gallery-like {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.main__pseudo-item {
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+}
+
+.main__pseudo-item_type_checkbox {
+  width: 100%;
+}
+
+.main__gallery-like:checked + .main__pseudo-item_type_checkbox {
+  background-color: #000;
 }
