@@ -9,3 +9,9 @@
     max-width: 290px;
   }
 }
+
+@media screen and (min-width: 585px) and (max-width: 880px) {
+  .footer {
+    max-width: 700px;
+  }
+}
