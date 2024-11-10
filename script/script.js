@@ -1,12 +1,11 @@
-let butEdit = document.querySelector(".main__button_edit");
-let popup = document.querySelector(".popup");
-let butClose = document.querySelector(".popup__button_close");
-let form = document.querySelector(".popup__container");
-let inName = document.querySelector(".main__paragraph_name");
-let inAbout = document.querySelector(".main__paragraph_about");
-let inpName = document.querySelector(".popup__input_name");
-let inpAbout = document.querySelector(".popup__input_about");
-
+const butEdit = document.querySelector(".main__button_edit");
+const popup = document.querySelector(".popup");
+const butClose = document.querySelector(".popup__button_close");
+const form = document.querySelector(".popup__container");
+const inName = document.querySelector(".main__paragraph_name");
+const inAbout = document.querySelector(".main__paragraph_about");
+const inpName = document.querySelector(".popup__input_name");
+const inpAbout = document.querySelector(".popup__input_about");
 function openEdit() {
   inpName.value = inName.textContent;
   inpAbout.value = inAbout.textContent;
