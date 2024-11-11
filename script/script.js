@@ -15,11 +15,11 @@ function openEdit() {
 butEdit.addEventListener("click", openEdit);
 butClose.addEventListener("click", openEdit);
 
-function saveChange(e) {
+function saveChangeEdit(e) {
   e.preventDefault();
   inName.textContent = inpName.value;
   inAbout.textContent = inpAbout.value;
   openEdit();
 }
 
-form.addEventListener("submit", saveChange);
+form.addEventListener("submit", saveChangeEdit);
