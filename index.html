@@ -59,115 +59,24 @@
             &#x1F7A3;
           </button>
         </div>
-        <div class="main__gallery">
-          <div class="main__gallery-card">
-            <img
-              src="./images/valle-yosemite.jpg"
-              alt="valle-yosemite"
-              class="main__gallery-image"
-            />
-            <div class="main__gallery-content">
-              <p class="main__gallery-paragraph">Valle de Yosemite</p>
-              <button type="button" class="main__button main__button_like">
-                <img
-                  src="./images/Vector-like.svg"
-                  alt="like"
-                  class="main__gallery-like"
-                />
-              </button>
-            </div>
-          </div>
-          <div class="main__gallery-card">
-            <img
-              src="./images/lago-louise.png"
-              alt="lago-louise"
-              class="main__gallery-image"
-            />
-            <div class="main__gallery-content">
-              <p class="main__gallery-paragraph">Lago Louise</p>
-              <button type="button" class="main__button main__button_like">
-                <img
-                  src="./images/Vector-like.svg"
-                  alt="like"
-                  class="main__gallery-like"
-                />
-              </button>
-            </div>
-          </div>
-          <div class="main__gallery-card">
-            <img
-              src="./images/montañas-calvas.png"
-              alt="montañas-calvas"
-              class="main__gallery-image"
-            />
-            <div class="main__gallery-content">
-              <p class="main__gallery-paragraph">Montañas Calvas</p>
-              <button type="button" class="main__button main__button_like">
-                <img
-                  src="./images/Vector-like.svg"
-                  alt="like"
-                  class="main__gallery-like"
-                />
-              </button>
-            </div>
-          </div>
-          <div class="main__gallery-card">
-            <img
-              src="./images/latemar.png"
-              alt="latemar"
-              class="main__gallery-image"
-            />
-            <div class="main__gallery-content">
-              <p class="main__gallery-paragraph">Latemar</p>
-              <button type="button" class="main__button main__button_like">
-                <img
-                  src="./images/Vector-like.svg"
-                  alt="like"
-                  class="main__gallery-like"
-                />
-              </button>
-            </div>
-          </div>
-          <div class="main__gallery-card">
-            <img
-              src="./images/vanois-national-park.png"
-              alt="vanois-national-park"
-              class="main__gallery-image"
-            />
-            <div class="main__gallery-content">
-              <p
-                class="main__gallery-paragraph main__gallery-paragraph_text_overflow"
-              >
-                Vanois National Park
-              </p>
-              <button type="button" class="main__button main__button_like">
-                <img
-                  src="./images/Vector-like.svg"
-                  alt="like"
-                  class="main__gallery-like"
-                />
-              </button>
-            </div>
-          </div>
-          <div class="main__gallery-card">
-            <img
-              src="./images/lago-braies.png"
-              alt="lago-braies"
-              class="main__gallery-image"
-            />
-            <div class="main__gallery-content">
-              <p class="main__gallery-paragraph">Lago di Braies</p>
-              <button type="button" class="main__button main__button_like">
-                <img
-                  src="./images/Vector-like.svg"
-                  alt="like"
-                  class="main__gallery-like"
-                />
-              </button>
-            </div>
+        <div class="main__gallery"></div>
+      </main>
+      <template id="main__template">
+        <div class="main__gallery-card">
+          <img class="main__gallery-image" />
+          <button
+            type="button"
+            class="main__button main__button_trash"
+          ></button>
+          <div class="main__gallery-content">
+            <p class="main__gallery-paragraph"></p>
+            <button
+              type="button"
+              class="main__button main__button_like"
+            ></button>
           </div>
         </div>
-      </main>
+      </template>
       <footer class="footer">
         <p class="footer__copyright">&#x00a9; 2024 Around The U.S.</p>
       </footer>
