@@ -16,21 +16,28 @@
           &#x1F7A9;
         </button>
         <form action="" class="popup__container">
-          <h2 class="popup__subtitle">Editar perfil</h2>
+          <h2 class="popup__subtitle"></h2>
           <fieldset class="popup__content">
             <input
               type="text"
               class="popup__input popup__input_name"
-              placeholder="Nombre"
+              required
             />
             <input
               type="text"
               class="popup__input popup__input_about"
-              placeholder="Acerca de mi"
+              required
             />
           </fieldset>
           <fieldset class="popup__content">
             <button type="submit" class="popup__button popup__button_save">
+              Guardar
+            </button>
+            <button
+              type="button"
+              class="popup__button popup__button_add"
+              disabled
+            >
               Guardar
             </button>
           </fieldset>
