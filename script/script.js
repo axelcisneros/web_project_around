@@ -1,12 +1,14 @@
 const butEdit = document.querySelector(".main__button_edit");
-const popup = document.querySelector(".popup");
+const butadd = document.querySelector(".main__button__add");
 const butClose = document.querySelector(".popup__button_close");
+const butSave = document.querySelector(".popup__button_save");
+const popup = document.querySelector(".popup");
 const form = document.querySelector(".popup__container");
+const gallery = document.querySelector(".main__gallery");
 const inName = document.querySelector(".main__paragraph_name");
 const inAbout = document.querySelector(".main__paragraph_about");
 const inpName = document.querySelector(".popup__input_name");
 const inpAbout = document.querySelector(".popup__input_about");
-const gallery = document.querySelector(".main__gallery");
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -33,20 +35,25 @@ const initialCards = [
     link: "./images/lago-braies.png",
   },
 ];
+
 function openEdit() {
   inpName.value = inName.textContent;
   inpAbout.value = inAbout.textContent;
   popup.classList.toggle("popup_opened");
 }
 
+function close() {
+  popup.classList.toggle("popup_opened");
+}
+
 butEdit.addEventListener("click", openEdit);
-butClose.addEventListener("click", openEdit);
+butClose.addEventListener("click", close);
 
 function saveChangeEdit(e) {
   e.preventDefault();
   inName.textContent = inpName.value;
   inAbout.textContent = inpAbout.value;
-  openEdit();
+  close();
 }
 
 form.addEventListener("submit", saveChangeEdit);
@@ -68,8 +75,8 @@ function cards() {
       });
     cardElement
       .querySelector(".main__button_trash")
-      .addEventListener("click", function (e) {
-        e.target.remove;
+      .addEventListener("click", function () {
+        cardElement.remove();
       });
     gallery.append(cardElement);
   });
