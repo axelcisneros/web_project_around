@@ -5,6 +5,7 @@ const popButSave = document.querySelector(".popup__button_save");
 const popButAdd = document.querySelector(".popup__button_add");
 const popup = document.querySelector(".popup");
 const form = document.querySelector(".popup__container");
+const popimg = document.querySelector(".popup__images");
 const gallery = document.querySelector(".main__gallery");
 const inName = document.querySelector(".main__paragraph_name");
 const inAbout = document.querySelector(".main__paragraph_about");
@@ -50,6 +51,7 @@ function openEditAdd(e) {
     popup.classList.toggle("popup_opened");
     popButSave.style.display = "block";
     popButAdd.style.display = "none";
+    popimg.style.display = "none";
   } else if (butClass.contains("main__button_add")) {
     inpName.value = "";
     inpAbout.value = "";
@@ -59,6 +61,7 @@ function openEditAdd(e) {
     popup.classList.toggle("popup_opened");
     popButSave.style.display = "none";
     popButAdd.style.display = "block";
+    popimg.style.display = "none";
     inpName.addEventListener("input", validarCampos);
     inpAbout.addEventListener("input", validarCampos);
     validarCampos();
@@ -67,6 +70,8 @@ function openEditAdd(e) {
 
 function close() {
   popup.classList.toggle("popup_opened");
+  popimg.removeAttribute("style");
+  form.removeAttribute("style");
 }
 
 butEdit.addEventListener("click", openEditAdd);
@@ -102,6 +107,11 @@ function cardsInitials() {
       .addEventListener("click", function () {
         cardElement.remove();
       });
+    cardElement
+      .querySelector(".main__gallery-image")
+      .addEventListener("click", function () {
+        imagePopup(item.name, item.link);
+      });
     gallery.append(cardElement);
   });
 }
@@ -126,6 +136,11 @@ function cardsAdd(titleValue, linkValue) {
     .addEventListener("click", function () {
       cardElement.remove();
     });
+  cardElement
+    .querySelector(".main__gallery-image")
+    .addEventListener("click", function () {
+      imagePopup(titleValue, linkValue);
+    });
   gallery.prepend(cardElement);
 }
 
@@ -137,3 +152,13 @@ popButAdd.addEventListener("click", function () {
   cardsAdd(inpName.value, inpAbout.value);
   close();
 });
+
+function imagePopup(name, title) {
+  const popimag = popimg.querySelector(".popup__image");
+  const poptxt = popimg.querySelector(".popup__paragraph");
+  popimag.src = title;
+  popimag.alt = name;
+  poptxt.textContent = name;
+  popup.classList.toggle("popup_opened");
+  form.style.display = "none";
+}
