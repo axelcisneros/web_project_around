@@ -28,6 +28,9 @@ La pagina es una galeria de arte, en la que se muestran los lugares de donde pro
     -Se muestra el perfil de usuario
     -Sección de fotos
     -Edición de perfil
+    -Borar tarjeta de imagen
+    -Boton like funcional
+    -Agregar nueva imagen
 
 ## Mejoras
 
