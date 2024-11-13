@@ -38,10 +38,9 @@ const initialCards = [
     link: "./images/lago-braies.png",
   },
 ];
-let butClass;
 
 function openEditAdd(e) {
-  butClass = e.target.classList;
+  const butClass = e.target.classList;
   if (butClass.contains("main__button_edit")) {
     inpName.value = inName.textContent;
     inpAbout.value = inAbout.textContent;
