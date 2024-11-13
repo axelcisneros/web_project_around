@@ -2,7 +2,7 @@
 
 <https://axelcisneros.github.io/web_project_around/>
 
-## Proyecto 5: Galeria de arte Triple Ten
+## Proyecto 8: Alrededor de los EE.UU
 
 Siguiendo con la creación de proyectos, en esta ocación es la creacion de una red social para compartir momentos inolvidables.
 
