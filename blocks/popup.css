@@ -58,7 +58,7 @@
 
 .popup__images {
   max-width: 430px;
-  margin: auto;
+  margin: 0 auto;
 }
 
 .popup__content-image {
