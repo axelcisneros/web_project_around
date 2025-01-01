@@ -87,6 +87,32 @@
               </button>
             </fieldset>
           </form>
+          <form class="popup__form form-img" novalidate>
+            <h2 class="popup__subtitle">Cambiar foto de perfil</h2>
+            <fieldset class="popup__content">
+              <label class="popup__field">
+                <input
+                  type="url"
+                  class="popup__input popup__input_img"
+                  placeholder="URL a la imagen"
+                  id="i-url-input"
+                  required
+                />
+                <span class="popup__input-error i-url-input-error"></span>
+              </label>
+              <button type="submit" class="popup__button popup__button_img">
+                Guardar
+              </button>
+            </fieldset>
+          </form>
+          <div class="popup__trash">
+            <h2 class="popup__subtitle">
+              &#x00BF;Est&#x00E1;s&#x00A0;seguro&#x003F;
+            </h2>
+            <button type="button" class="popup__button popup__button_trash">
+              S&#x00ED;
+            </button>
+          </div>
         </div>
       </div>
       <header class="header">
@@ -100,6 +126,9 @@
               alt="profile-image"
               class="main__profile-image"
             />
+            <button type="button" class="main__button main__button_img">
+              &#x1F58C;
+            </button>
           </div>
           <div class="main__content-paragraph">
             <p class="main__paragraph main__paragraph_name">Axel Cisneros</p>

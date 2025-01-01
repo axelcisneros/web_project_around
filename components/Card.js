@@ -1,9 +1,12 @@
+import { butTrash } from "../constants/utils.js";
+
 export default class Card {
-  constructor(data, cardSelector, handleCardClick) {
+  constructor(data, cardSelector, handleCardClick, handleCardDelete) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
     this._popupImage = handleCardClick;
+    this._handleCardDelete = handleCardDelete;
   }
 
   _getTemplate() {
@@ -27,7 +30,11 @@ export default class Card {
     this._element
       .querySelector(".main__button_trash")
       .addEventListener("click", () => {
-        this._element.remove();
+        this._handleCardDelete.open();
+        butTrash.addEventListener("click", () => {
+          this._element.remove();
+          this._handleCardDelete.close();
+        });
       });
   }
 
