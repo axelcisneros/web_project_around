@@ -1,4 +1,9 @@
-import { formCardsAdd as add, usInfo } from "../page/index.js";
+import {
+  formCardsAdd as add,
+  usInfo,
+  formInfoEdit,
+  formImgProfile,
+} from "../page/index.js";
 
 export const edClass = ".form-edit";
 export const addClass = ".form-add";
@@ -80,7 +85,7 @@ export const closePop = () => {
 };
 
 export const saveChangeEdit = (nameValue, aboutValue) => {
-  usInfo.setUserInfo({ name: nameValue, job: aboutValue });
+  formInfoEdit(nameValue, aboutValue);
   closePop();
 };
 
@@ -90,7 +95,7 @@ export const saveCard = (title, link) => {
 };
 
 export const saveImgProfile = (avatarValue) => {
-  usInfo.setAvatar({ avatar: avatarValue });
+  formImgProfile(avatarValue);
   closePop();
 };
 

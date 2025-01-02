@@ -88,7 +88,6 @@ export default class Card {
     this._element.querySelector(".main__gallery-image").alt = this._link;
     this._element.querySelector(".main__gallery-paragraph").textContent =
       this._name;
-    console.log(this._id);
 
     return this._element;
   }
