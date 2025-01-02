@@ -71,21 +71,14 @@ export const usInfo = new UserInfo({
 });
 
 api
-  .getUserInfo()
-  .then((data) => {
-    usInfo.setUserInfo({ name: data.name, job: data.about });
-    usInfo.setAvatar({ avatar: data.avatar });
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  .getUserInfoAndCards()
+  .then(({ userInfo, cards }) => {
+    usInfo.setUserInfo({ name: userInfo.name, job: userInfo.about });
+    usInfo.setAvatar({ avatar: userInfo.avatar });
 
-api
-  .getInitialCards()
-  .then((initialCards) => {
     const sectionCard = new Section(
       {
-        item: initialCards,
+        item: cards,
         renderer: (item) => {
           const card = new Card(
             item,
