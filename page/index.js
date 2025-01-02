@@ -107,7 +107,7 @@ api
   });
 
 export const formCardsAdd = (titleValue, linkValue, cardSelector) => {
-  const sectionInstance = new Section(
+  const sectionFormCard = new Section(
     {
       items: [],
       renderer: (data) => {
@@ -127,8 +127,29 @@ export const formCardsAdd = (titleValue, linkValue, cardSelector) => {
   api
     .addCard(cardData)
     .then((res) => {
-      sectionInstance.addItem(sectionInstance._renderer(res));
-      console.log(cardData);
+      sectionFormCard.addItem(sectionFormCard._renderer(res));
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const formInfoEdit = (nameValue, aboutValue) => {
+  api
+    .setUserInfo({ name: nameValue, about: aboutValue })
+    .then((data) => {
+      usInfo.setUserInfo({ name: data.name, job: data.about });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const formImgProfile = (avatarValue) => {
+  api
+    .updateAvatar({ avatar: avatarValue })
+    .then((data) => {
+      usInfo.setAvatar({ avatar: data.avatar });
     })
     .catch((err) => {
       console.log(err);
