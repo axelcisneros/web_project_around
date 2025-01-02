@@ -9,7 +9,6 @@ import Popup from "../components/Popup.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import {
-  initialCards,
   popup,
   popimag,
   poptxt,
@@ -19,6 +18,7 @@ import {
   formValidators,
   paragName,
   paragAbout,
+  profImg,
   saveChangeEdit,
   saveCard,
   edClass,
@@ -29,13 +29,32 @@ import {
   saveImgProfile,
   imgClass,
   openEditAdd,
+  inpTitle,
+  inpUrl,
+  inpName,
+  inpAbout,
+  inpImg,
 } from "../constants/utils.js";
 
-export const popupFormEdit = new PopupWithForm(popup, edClass, saveChangeEdit);
+export const api = new Api({
+  baseUrl: "https://around-api.es.tripleten-services.com/v1",
+  headers: {
+    authorization: "8dc55ea1-4d52-4586-8203-01d2d9a48ea4",
+    "Content-Type": "application/json",
+  },
+});
+
+export const popupFormEdit = new PopupWithForm(popup, edClass, () => {
+  saveChangeEdit(inpName.value, inpAbout.value);
+});
 popupFormEdit.setEventListeners();
-export const popupFormAdd = new PopupWithForm(popup, addClass, saveCard);
+export const popupFormAdd = new PopupWithForm(popup, addClass, () => {
+  saveCard(inpTitle.value, inpUrl.value);
+});
 popupFormAdd.setEventListeners();
-export const popupFormimg = new PopupWithForm(popup, imgClass, saveImgProfile);
+export const popupFormimg = new PopupWithForm(popup, imgClass, () => {
+  saveImgProfile(inpImg.value);
+});
 popupFormimg.setEventListeners();
 export const popupFormTrash = new PopupWithConfirmation(popup);
 
@@ -48,40 +67,72 @@ popupImage.setEventListeners();
 export const usInfo = new UserInfo({
   nameSelector: paragName,
   jobSelector: paragAbout,
+  avatarSelector: profImg,
 });
 
-const sectionCard = new Section(
-  {
-    item: initialCards,
-    renderer: (item) => {
-      const card = new Card(
-        item,
-        "#main__template",
-        popupImage,
-        popupFormTrash
-      );
-      const cardElement = card.getCreateCard();
-      sectionCard.addItem(cardElement);
-    },
-  },
-  gallery
-);
-sectionCard.renderer();
+api
+  .getUserInfo()
+  .then((data) => {
+    usInfo.setUserInfo({ name: data.name, job: data.about });
+    usInfo.setAvatar({ avatar: data.avatar });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
-const formCardsAdd = (titleValue, linkValue, cardSelector) => {
+api
+  .getInitialCards()
+  .then((initialCards) => {
+    const sectionCard = new Section(
+      {
+        item: initialCards,
+        renderer: (item) => {
+          const card = new Card(
+            item,
+            "#main__template",
+            popupImage,
+            popupFormTrash,
+            api
+          );
+          const cardElement = card.getCreateCard();
+          sectionCard.addItem(cardElement);
+        },
+      },
+      gallery
+    );
+    sectionCard.renderer();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+export const formCardsAdd = (titleValue, linkValue, cardSelector) => {
   const sectionInstance = new Section(
     {
       items: [],
       renderer: (data) => {
-        const formCard = new FormCard(cardSelector, popupImage, popupFormTrash);
-        formCard.handleCreateCard(data.link, data.title);
+        const formCard = new FormCard(
+          cardSelector,
+          popupImage,
+          popupFormTrash,
+          api
+        );
+        formCard.handleCreateCard(data.link, data.name, data._id);
         return formCard.getCreateCard();
       },
     },
     gallery
   );
-  const cardData = { link: linkValue, title: titleValue };
-  sectionInstance.addItem(sectionInstance._renderer(cardData));
+  const cardData = { name: titleValue, link: linkValue };
+  api
+    .addCard(cardData)
+    .then((res) => {
+      sectionInstance.addItem(sectionInstance._renderer(res));
+      console.log(cardData);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 formElements.forEach((formElement) => {
@@ -103,5 +154,3 @@ document.addEventListener("keydown", (e) => {
     saveImgProfile();
   }
 });
-
-export { formCardsAdd as add };

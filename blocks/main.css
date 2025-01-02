@@ -42,13 +42,13 @@
 .main__paragraph_name {
   grid-column: 1 / 4;
   margin: 0;
-  font-size: 42px;
+  font-size: 38px;
   line-height: 48px;
   font-weight: 600;
   padding-top: 22px;
 }
 
-.main__paragraph_about {
+.main__paragraph_job {
   grid-column: 1 / 5;
   grid-row: 2;
   margin: 0;
@@ -194,7 +194,7 @@
     line-height: normal;
   }
 
-  .main__paragraph_about {
+  .main__paragraph_job {
     padding: 0;
     font-size: 14px;
   }
@@ -229,9 +229,10 @@
   .main__paragraph_name {
     font-size: 30px;
     line-height: normal;
+    padding-top: 0;
   }
 
-  .main__paragraph_about {
+  .main__paragraph_job {
     font-size: 14px;
   }
 
