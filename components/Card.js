@@ -56,10 +56,11 @@ export default class Card {
             this._api
               .removeCard(this._id)
               .then(() => {
+                butTrash.textContent = "Eliminando...";
                 this._element.remove();
                 this._handleCardDelete.close();
               })
-              .catch((err) => console.log(err));
+              .catch((err) => (butTrash.textContent = err));
           },
           { once: true }
         );

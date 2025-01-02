@@ -8,6 +8,9 @@ import {
 export const edClass = ".form-edit";
 export const addClass = ".form-add";
 export const imgClass = ".form-img";
+export const popButImg = document.querySelector(".popup__button_img");
+export const popButAdd = document.querySelector(".popup__button_add");
+export const popButEdit = document.querySelector(".popup__button_save");
 export const butEdit = document.querySelector(".main__button_edit");
 export const butAdd = document.querySelector(".main__button_add");
 export const butImg = document.querySelector(".main__button_img");
@@ -30,7 +33,6 @@ export const inpImg = document.querySelector(".popup__input_img");
 export const popimag = popimg.querySelector(".popup__image");
 export const poptxt = popimg.querySelector(".popup__paragraph");
 export const gallery = ".main__gallery";
-
 export const validationConfig = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
@@ -75,13 +77,19 @@ export const openEditAdd = (e, openPop) => {
 };
 
 export const closePop = () => {
-  popup.classList.remove("popup_opened");
-  popimg.classList.remove("popup__item-hidden");
-  formAdd.classList.remove("popup__item-hidden");
-  formEd.classList.remove("popup__item-hidden");
-  formImg.classList.remove("popup__item-hidden");
-  popTrash.classList.remove("popup__item-hidden");
-  resetFormAndValidation(popup);
+  setTimeout(() => {
+    popup.classList.remove("popup_opened");
+    popimg.classList.remove("popup__item-hidden");
+    formAdd.classList.remove("popup__item-hidden");
+    formEd.classList.remove("popup__item-hidden");
+    formImg.classList.remove("popup__item-hidden");
+    popTrash.classList.remove("popup__item-hidden");
+    popButAdd.textContent = "Guardar";
+    popButEdit.textContent = "Guardar";
+    popButImg.textContent = "Guardar";
+    butTrash.textContent = "Si";
+    resetFormAndValidation(popup);
+  }, 1500);
 };
 
 export const saveChangeEdit = (nameValue, aboutValue) => {
