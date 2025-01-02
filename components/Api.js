@@ -92,4 +92,15 @@ export default class Api {
     }
     return await Promise.reject(`Error: ${res.status}`);
   }
+  async getUserInfoAndCards() {
+    try {
+      const [userInfo, cards] = await Promise.all([
+        this.getUserInfo(),
+        this.getInitialCards(),
+      ]);
+      return { userInfo, cards };
+    } catch (error) {
+      return await Promise.reject(error);
+    }
+  }
 }
