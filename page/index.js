@@ -34,6 +34,9 @@ import {
   inpName,
   inpAbout,
   inpImg,
+  popButAdd,
+  popButEdit,
+  popButImg,
 } from "../constants/utils.js";
 
 export const api = new Api({
@@ -120,10 +123,11 @@ export const formCardsAdd = (titleValue, linkValue, cardSelector) => {
   api
     .addCard(cardData)
     .then((res) => {
+      popButAdd.textContent = "Guardando...";
       sectionFormCard.addItem(sectionFormCard._renderer(res));
     })
     .catch((err) => {
-      console.log(err);
+      popButAdd.textContent = err;
     });
 };
 
@@ -131,10 +135,11 @@ export const formInfoEdit = (nameValue, aboutValue) => {
   api
     .setUserInfo({ name: nameValue, about: aboutValue })
     .then((data) => {
+      popButEdit.textContent = "Guardando...";
       usInfo.setUserInfo({ name: data.name, job: data.about });
     })
     .catch((err) => {
-      console.log(err);
+      popButEdit.textContent = err;
     });
 };
 
@@ -142,10 +147,11 @@ export const formImgProfile = (avatarValue) => {
   api
     .updateAvatar({ avatar: avatarValue })
     .then((data) => {
+      popButImg.textContent = "Guardando...";
       usInfo.setAvatar({ avatar: data.avatar });
     })
     .catch((err) => {
-      console.log(err);
+      popButImg.textContent = err;
     });
 };
 
