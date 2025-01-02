@@ -1,4 +1,4 @@
-import { add, usInfo } from "../page/index.js";
+import { formCardsAdd as add, usInfo } from "../page/index.js";
 
 export const edClass = ".form-edit";
 export const addClass = ".form-add";
@@ -15,7 +15,7 @@ export const formImg = document.querySelector(imgClass);
 export const popimg = document.querySelector(".popup__images");
 export const popTrash = document.querySelector(".popup__trash");
 export const paragName = document.querySelector(".main__paragraph_name");
-export const paragAbout = document.querySelector(".main__paragraph_about");
+export const paragAbout = document.querySelector(".main__paragraph_job");
 export const profImg = document.querySelector(".main__profile-image");
 export const inpName = document.querySelector(".popup__input_name");
 export const inpAbout = document.querySelector(".popup__input_about");
@@ -25,32 +25,7 @@ export const inpImg = document.querySelector(".popup__input_img");
 export const popimag = popimg.querySelector(".popup__image");
 export const poptxt = popimg.querySelector(".popup__paragraph");
 export const gallery = ".main__gallery";
-export const initialCards = [
-  {
-    name: "Valle de Yosemite",
-    link: "./images/valle-yosemite.jpg",
-  },
-  {
-    name: "Lago Louise",
-    link: "./images/lago-louise.png",
-  },
-  {
-    name: "Montañas Calvas",
-    link: "./images/montañas-calvas.png",
-  },
-  {
-    name: "Latemar",
-    link: "./images/latemar.png",
-  },
-  {
-    name: "Vanois National Park",
-    link: "./images/vanois-national-park.png",
-  },
-  {
-    name: "Lago di Braies",
-    link: "./images/lago-braies.png",
-  },
-];
+
 export const validationConfig = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
@@ -104,18 +79,18 @@ export const closePop = () => {
   resetFormAndValidation(popup);
 };
 
-export const saveChangeEdit = () => {
-  usInfo.setUserInfo({ name: inpName.value, job: inpAbout.value });
+export const saveChangeEdit = (nameValue, aboutValue) => {
+  usInfo.setUserInfo({ name: nameValue, job: aboutValue });
   closePop();
 };
 
-export const saveCard = () => {
-  add(inpTitle.value, inpUrl.value, "#main__template");
+export const saveCard = (title, link) => {
+  add(title, link, "#main__template");
   closePop();
 };
 
-export const saveImgProfile = () => {
-  profImg.src = inpImg.value;
+export const saveImgProfile = (avatarValue) => {
+  usInfo.setAvatar({ avatar: avatarValue });
   closePop();
 };
 

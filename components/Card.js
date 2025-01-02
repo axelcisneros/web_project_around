@@ -1,12 +1,14 @@
 import { butTrash } from "../constants/utils.js";
 
 export default class Card {
-  constructor(data, cardSelector, handleCardClick, handleCardDelete) {
+  constructor(data, cardSelector, handleCardClick, handleCardDelete, api) {
+    this._id = data._id;
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
     this._popupImage = handleCardClick;
     this._handleCardDelete = handleCardDelete;
+    this._api = api;
   }
 
   _getTemplate() {
@@ -22,7 +24,24 @@ export default class Card {
     this._element
       .querySelector(".main__button_like")
       .addEventListener("click", (e) => {
-        e.target.classList.toggle("main__button_like_active");
+        const isActive = e.target.classList.contains(
+          "main__button_like_active"
+        );
+        if (isActive) {
+          this._api
+            .removeLike(this._id)
+            .then(() => {
+              e.target.classList.remove("main__button_like_active");
+            })
+            .catch((err) => console.log(err));
+        } else {
+          this._api
+            .likeCard(this._id)
+            .then(() => {
+              e.target.classList.add("main__button_like_active");
+            })
+            .catch((err) => console.log(err));
+        }
       });
   }
 
@@ -31,10 +50,19 @@ export default class Card {
       .querySelector(".main__button_trash")
       .addEventListener("click", () => {
         this._handleCardDelete.open();
-        butTrash.addEventListener("click", () => {
-          this._element.remove();
-          this._handleCardDelete.close();
-        });
+        butTrash.addEventListener(
+          "click",
+          () => {
+            this._api
+              .removeCard(this._id)
+              .then(() => {
+                this._element.remove();
+                this._handleCardDelete.close();
+              })
+              .catch((err) => console.log(err));
+          },
+          { once: true }
+        );
       });
   }
 
@@ -60,6 +88,7 @@ export default class Card {
     this._element.querySelector(".main__gallery-image").alt = this._link;
     this._element.querySelector(".main__gallery-paragraph").textContent =
       this._name;
+    console.log(this._id);
 
     return this._element;
   }
