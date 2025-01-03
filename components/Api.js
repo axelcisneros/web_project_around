@@ -3,94 +3,46 @@ export default class Api {
     this._baseUrl = options.baseUrl;
     this._headers = options.headers;
   }
-  async getInitialCards() {
-    const res = await fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers,
-    });
-    if (res.ok) {
-      return res.json();
+  async _makeRequest(endPoint, method = "GET", body = null) {
+    const options = {
+      method,
+      headers: { ...this._headers },
+    };
+    if (body) {
+      options.headers["Content-Type"] = "application/json";
+      options.body = JSON.stringify(body);
     }
-    return await Promise.reject(`Error: ${res.status}`);
+    try {
+      const res = await fetch(`${this._baseUrl}/${endPoint}`, options);
+      if (!res.ok) throw new Error(`Error: ${res.status}`);
+      return await res.json();
+    } catch (err) {
+      return console.log(err);
+    }
+  }
+  async getInitialCards() {
+    return this._makeRequest("/cards");
   }
   async getUserInfo() {
-    const res = await fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers,
-    });
-    if (res.ok) {
-      return res.json();
-    }
-    return await Promise.reject(`Error: ${res.status}`);
+    return this._makeRequest("/users/me");
   }
-  async setUserInfo(data) {
-    const res = await fetch(`${this._baseUrl}/users/me`, {
-      method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify({
-        name: data.name,
-        about: data.about,
-      }),
-    });
-    if (res.ok) {
-      return res.json();
-    }
-    return await Promise.reject(`Error: ${res.status}`);
+  async setUserInfo(name, about) {
+    return this._makeRequest("/users/me", "PATCH", { name, about });
   }
   async addCard(data) {
-    const res = await fetch(`${this._baseUrl}/cards`, {
-      method: "POST",
-      headers: this._headers,
-      body: JSON.stringify({
-        name: data.name,
-        link: data.link,
-      }),
-    });
-    if (res.ok) {
-      return res.json();
-    }
-    return await Promise.reject(`Error: ${res.status}`);
+    return this._makeRequest("/cards", "POST", data);
   }
   async removeCard(cardId) {
-    const res = await fetch(`${this._baseUrl}/cards/${cardId}`, {
-      method: "DELETE",
-      headers: this._headers,
-    });
-    if (res.ok) {
-      return res.json();
-    }
-    return await Promise.reject(`Error: ${res.status}`);
+    return this._makeRequest(`/cards/${cardId}`, "DELETE");
   }
   async likeCard(cardId) {
-    const res = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: "PUT",
-      headers: this._headers,
-    });
-    if (res.ok) {
-      return res.json();
-    }
-    return await Promise.reject(`Error: ${res.status}`);
+    return this._makeRequest(`/cards/${cardId}/likes`, "PUT");
   }
   async removeLike(cardId) {
-    const res = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: "DELETE",
-      headers: this._headers,
-    });
-    if (res.ok) {
-      return res.json();
-    }
-    return await Promise.reject(`Error: ${res.status}`);
+    return this._makeRequest(`/cards/${cardId}/likes`, "DELETE");
   }
   async updateAvatar(data) {
-    const res = await fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify({
-        avatar: data.avatar,
-      }),
-    });
-    if (res.ok) {
-      return res.json();
-    }
-    return await Promise.reject(`Error: ${res.status}`);
+    return this._makeRequest("/users/me/avatar", "PATCH", data);
   }
   async getUserInfoAndCards() {
     try {

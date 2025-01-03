@@ -43,7 +43,6 @@ export const api = new Api({
   baseUrl: "https://around-api.es.tripleten-services.com/v1",
   headers: {
     authorization: "8dc55ea1-4d52-4586-8203-01d2d9a48ea4",
-    "Content-Type": "application/json",
   },
 });
 
@@ -133,8 +132,9 @@ export const formCardsAdd = (titleValue, linkValue, cardSelector) => {
 
 export const formInfoEdit = (nameValue, aboutValue) => {
   api
-    .setUserInfo({ name: nameValue, about: aboutValue })
+    .setUserInfo(nameValue, aboutValue)
     .then((data) => {
+      console.log(data);
       popButEdit.textContent = "Guardando...";
       usInfo.setUserInfo({ name: data.name, job: data.about });
     })
@@ -147,6 +147,7 @@ export const formImgProfile = (avatarValue) => {
   api
     .updateAvatar({ avatar: avatarValue })
     .then((data) => {
+      console.log(data);
       popButImg.textContent = "Guardando...";
       usInfo.setAvatar({ avatar: data.avatar });
     })
