@@ -147,7 +147,6 @@ export const formImgProfile = (avatarValue) => {
   api
     .updateAvatar({ avatar: avatarValue })
     .then((data) => {
-      console.log(data);
       popButImg.textContent = "Guardando...";
       usInfo.setAvatar({ avatar: data.avatar });
     })
